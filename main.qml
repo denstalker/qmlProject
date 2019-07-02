@@ -3,6 +3,10 @@ import QtQuick.Window 2.2
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
 
+import "functions.js" as MyFunctions
+import com.denis.port 1.0
+
+
 
 
 Window {
@@ -11,6 +15,21 @@ Window {
     width: 640
     height: 480
     title: qsTr("Hello")
+
+
+    Port
+    {
+
+        id: port
+
+        onNumberChanged:
+        {
+            console.log("Port") //Сигнал описаный в C++
+            text1.text = number
+        }
+    }
+
+
 
 
     ListModel
@@ -68,8 +87,30 @@ Window {
                 first.value: 0.25
                 second.value: 0.75
             }
+            Text {
+                id: text1
+                width: 56
+                height: 73
+                text: qsTr("0")
+                anchors.top: parent.top
+                anchors.topMargin: 47
+                anchors.left: parent.left
+                anchors.leftMargin: 18
+                font.pointSize: 36
+            }
+
+            Button {
+                id: buttonReset
+                text: qsTr("Сброс")
+                anchors.top: parent.top
+                anchors.topMargin: 64
+                anchors.left: text1.right
+                anchors.leftMargin: 12
+                onClicked: port.number++
+            }
 
         }
+
         Item {
             id: optionsTab
             Rectangle
@@ -83,6 +124,8 @@ Window {
                 anchors.leftMargin: 8
                 ListView
                 {
+
+                    id: viewId
                     width: 180; height: 200
                     anchors.fill: parent
                     model: comPortListModel
@@ -92,6 +135,7 @@ Window {
             }
 
         }
+
 
     }
 
@@ -120,13 +164,8 @@ Window {
 
 
 
-
-
-
-
-
 /*##^## Designer {
-    D{i:2;anchors_x:22;anchors_y:92}D{i:3;anchors_x:206}D{i:1;anchors_height:242;anchors_width:382;anchors_x:82;anchors_y:142}
-D{i:4;anchors_x:326;anchors_y:82}D{i:11;anchors_height:270;anchors_width:280;anchors_x:46;anchors_y:200}
+    D{i:1;anchors_height:242;anchors_width:382;anchors_x:82;anchors_y:142}D{i:3;anchors_x:206}
+D{i:4;anchors_x:326;anchors_y:82}D{i:2;anchors_x:22;anchors_y:92}D{i:11;anchors_height:270;anchors_width:280;anchors_x:18;anchors_y:47}
 }
  ##^##*/

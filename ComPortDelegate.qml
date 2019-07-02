@@ -1,20 +1,27 @@
 import QtQuick 2.0
 
 
-MouseArea
+Rectangle
 {
-    anchors.fill: row
-    onClicked: {
-        console.log("click")
+    width: viewId.width
+    height: 30
+    MouseArea
+    {
+        anchors.fill: row
+        onClicked: {
+            console.log("clickww")
+
+
+        }
+
+
 
     }
-
-    Column {
+    Row {
         id : row
         Text { text: '<b>Name:</b> ' + name }
         //                Text { text: '<b>Number:</b> ' + number }
     }
-
 }
 
 
