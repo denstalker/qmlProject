@@ -2,10 +2,12 @@
 #define PORT_H
 
 #include <QObject>
+#include <QSerialPort>
+#include <QSerialPortInfo>
 
 class Port : public QObject
 {
-    //В QML доступно только свойство
+    //В QML доступно только свойство и сигналы
     int counter;
     Q_OBJECT
     Q_PROPERTY(int number READ getNumber WRITE setNumber NOTIFY numberChanged)

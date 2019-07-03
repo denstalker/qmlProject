@@ -4,8 +4,26 @@
 Port::Port(QObject *parent) : QObject(parent)
 {
     mNumber = 0;
+    QSerialPort serial;
+
+    QList<QSerialPortInfo> listSerial;
+
+    serial.setBaudRate(QSerialPort::Baud9600);
+    serial.setDataBits(QSerialPort::Data8);
+    serial.setParity(QSerialPort::NoParity);
+    serial.setStopBits(QSerialPort::OneStop);
+    serial.setFlowControl(QSerialPort::NoFlowControl);
+    serial.open(QSerialPort::ReadWrite);
+
+
+    listSerial = QSerialPortInfo::availablePorts();
+
+    foreach(QSerialPortInfo str, listSerial)
+    {
+        qDebug() << str.portName();
+    }
     startTimer(1000);
-//    connect(this, SIGNAL(counterChanged()),this,SLOT(counterChange()));
+    //    connect(this, SIGNAL(counterChanged()),this,SLOT(counterChange()));
 
 }
 
