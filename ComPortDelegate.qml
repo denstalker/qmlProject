@@ -19,8 +19,7 @@ Rectangle
     }
     Row {
         id : row
-        Text { text: '<b>Name:</b> ' + name }
-        //                Text { text: '<b>Number:</b> ' + number }
+        Text { text: name + iwd}
     }
 }
 
